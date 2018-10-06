@@ -1,0 +1,66 @@
+﻿<div id="contact-list" class="container">
+
+    <div class="row p-10">
+        <div class="col-md-2">
+            <div class="form-group">
+                <select [(ngModel)]="filter_by" (ngModelChange)="FilterBy($event)" class="form-control" id="Filter">
+                    <option [ngValue]="null" disabled>Filter by </option>
+                    <option [ngValue]="1"> Active Contact </option>
+                    <option [ngValue]="0"> De-Active Contact </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <input type="text" [(ngModel)]="search_by" (input)="onSearchChange($event.target.value)" name="search" id="search" class="form-control"
+                    placeholder="Search here..." tabindex="0">
+            </div>
+        </div>
+        <div class="col-md-1">
+            <input type="button" (click)="Clear()" value="Clear" class="btn btn-primary btn-block btn-sm">
+        </div>
+    </div>
+    <div *ngIf="contactBook && contactBook.length">
+        <div class="card text-left" *ngFor="let val of contactBook | paginate: { itemsPerPage: 10, currentPage: p }">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h5 class="card-title">{{ val.first_name}} {{val.last_name }}</h5>
+                    </div>
+                    <div class="col-md-1">
+                        <input type="button" (click)="Edit(val.contact_book_id)" value="Edit" class="btn btn-success btn-block btn-sm">
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-primary btn-block btn-sm" mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                            [popoverMessage]="popoverMessage" placement="bottom" (confirm)="Delete(val.contact_book_id)"
+                            (cancel)="cancelClicked = true">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+                <p class="card-text">{{ val.contact_no }}</p>
+                <p class="card-text">{{ val.email_id }}</p>
+                <div class="col-md-2 p-0">
+                    <button [ngClass]="val.is_active ? 'btn-success' : 'btn-danger'" value="Active" class="btn btn-block btn-sm">
+                        {{ val.is_active ? 'Active' : 'De-Active' }}
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <div *ngIf="!contactBook.length">
+        <div class="card text-center no-results">
+            <div class="col-md-12">
+                <h5 class="card-title p-10">No contact book found! :(</h5>
+                <a routerLink="/add-contact">Clear here</a> to Add new Contact
+            </div>
+        </div>
+    </div>
+    <style>
+        h5 {
+            font-size: 25px;
+        }
+    </style>
+</div>

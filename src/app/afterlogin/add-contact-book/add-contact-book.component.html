@@ -1,0 +1,66 @@
+﻿<div id="add-contact-book" class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form [formGroup]="addContactFormGroup" novalidate (ngSubmit)="Save()" #formDir="ngForm">
+                <h2>{{title}}</h2>
+                <!-- <small>It's free and always will be.</small> -->
+                <hr class="colorgraph">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="text" formControlName="first_name" name="first_name" id="first_name" class="form-control input-lg"
+                                placeholder="First Name" tabindex="1">
+                            <small class="text-danger" *ngIf="first_name.errors && (first_name.dirty || first_name.touched)">
+                                <span *ngIf="first_name.errors.required">First Name is Required</span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="text" formControlName="last_name" name="last_name" id="last_name" class="form-control input-lg"
+                                placeholder="Last Name" tabindex="2">
+                            <small class="text-danger" *ngIf="last_name.errors && (last_name.dirty || last_name.touched)">
+                                <span *ngIf="last_name.errors.required">Last Name is Required</span>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" formControlName="email_id" id="email" class="form-control input-lg"
+                        placeholder="Email Address" tabindex="3">
+                    <small class="text-danger" *ngIf="email_id.errors && (email_id.dirty || email_id.touched)">
+                        <span *ngIf="email_id.errors.IsInValid">Invalid Email Address</span>
+                        <span *ngIf="email_id.errors.required">Email address is Required</span>
+                    </small>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="contact_no" formControlName="contact_no" id="contact_no" class="form-control input-lg"
+                        placeholder="Contact No." tabindex="4">
+
+                    <small class="text-danger" *ngIf="contact_no.errors && (contact_no.dirty || contact_no.touched)">
+                        <span *ngIf="contact_no.errors.required">Contact No. is Required</span>
+                    </small>
+                </div>
+                <div class="row text-left">
+                    <div class="col-xs-2 col-sm-2 col-md-2 is-active-label">
+                        Is Active
+                    </div>
+                    <div class="col-xs-10 col-sm-10 col-md-10">
+                        <label class="switch">
+                            <input type="checkbox" tabindex="5" formControlName="is_active" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <hr class="colorgraph">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6"><input (click)="Cancel()" type="button" value="Cancel" class="btn btn-primary btn-block btn-lg"
+                            tabindex="7"></div>
+                    <div class="col-xs-6 col-md-6"><input type="submit" value="Save" class="btn btn-success btn-block btn-lg"
+                            tabindex="6"></div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

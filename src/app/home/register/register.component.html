@@ -1,0 +1,73 @@
+<div id="register" class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form [formGroup]="registerFormGroup" novalidate (ngSubmit)="Register()" #formDir="ngForm">
+                <h2>Sign Up</h2>
+                <hr class="colorgraph">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="text" formControlName="first_name" name="first_name" id="first_name" class="form-control input-lg"
+                                placeholder="First Name" tabindex="1">
+                            <small class="text-danger" *ngIf="first_name.errors && (first_name.dirty || first_name.touched)">
+                                <span *ngIf="first_name.errors.required">First Name is Required</span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="text" formControlName="last_name" name="last_name" id="last_name" class="form-control input-lg"
+                                placeholder="Last Name" tabindex="2">
+                            <small class="text-danger" *ngIf="last_name.errors && (last_name.dirty || last_name.touched)">
+                                <span *ngIf="last_name.errors.required">Last Name is Required</span>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" formControlName="email_id" id="email" class="form-control input-lg"
+                        placeholder="Email Address" tabindex="4">
+                    <small class="text-danger" *ngIf="email_id.errors && (email_id.dirty || email_id.touched)">
+                        <span *ngIf="email_id.errors.IsInValid">Invalid Email Address</span>
+                        <span *ngIf="email_id.errors.required">Email address is Required</span>
+                    </small>
+                </div>
+              
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="password" formControlName="password" name="password" id="password" class="form-control input-lg"
+                                placeholder="Password" tabindex="5">
+                            <small class="text-danger" *ngIf="password.errors && (password.dirty || password.touched)">
+                                <span *ngIf="password.errors.required">Password is Required</span>
+                                <span *ngIf="password.errors.IsInValid">Min 8 characters</span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="password" formControlName="confirm_password" name="confirm_password" id="confirm_password"
+                                class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+                            <small *ngIf="confirm_password.errors && (confirm_password.dirty  || confirm_password.touched)"
+                                class="text-danger">
+                                <span *ngIf="confirm_password.value!='' && confirm_password.invalid">Password
+                                    mismatch</span>
+                                <span *ngIf="confirm_password.errors.required">Required</span>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="colorgraph">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg"
+                            tabindex="7"></div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-xs-12 col-md-12">
+                        Already registered? <a routerLink="/home/login">Clear here</a> to Login</div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
